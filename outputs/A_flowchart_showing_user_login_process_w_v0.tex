@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, positioning} % Added positioning library
+
+\begin{document}
+\begin{tikzpicture}[node distance=2cm]
+  % Define start node
+  \node (start) [draw, circle] {Start};
+  
+  % Define input node for username and password
+  \node (input) [below=of start, draw, rectangle] {Enter Username and Password}; % Corrected 'below of' to 'below'
+  
+  % Define decision diamond for username and password validation
+  \node (validate) [below=of input, draw, diamond, aspect=2] {Validate Credentials?}; % Corrected 'below of' to 'below'
+  
+  % Define success path
+  \node (success) [below left=of validate, draw, rectangle] {Login Success};
+  
+  % Define failure path
+  \node (failure) [below right=of validate, draw, rectangle] {Login Failure};
+  
+  % Draw arrows between nodes
+  \draw[->] (start) -- (input);
+  \draw[->] (input) -- (validate);
+  \draw[->] (validate) -| node[near start, above] {Yes} (success);
+  \draw[->] (validate) -| node[near start, below] {No} (failure);
+\end{tikzpicture}
+\end{document}

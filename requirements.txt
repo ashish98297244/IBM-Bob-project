@@ -1,0 +1,17 @@
+# Core IBM WatsonX / Granite SDK
+ibm-watsonx-ai>=1.0.0
+
+# Web framework
+flask>=3.0.0
+
+# Environment variable loading
+python-dotenv>=1.0.0
+
+# Standard utilities (already in stdlib for Python 3.10+, listed for clarity)
+# pathlib  — stdlib
+# dataclasses — stdlib
+# logging  — stdlib
+# re       — stdlib
+# json     — stdlib
+# enum     — stdlib
+# subprocess — stdlib

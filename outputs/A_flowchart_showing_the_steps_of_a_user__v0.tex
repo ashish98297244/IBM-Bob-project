@@ -1,0 +1,54 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+
+\begin{document}
+\begin{tikzpicture}[node distance=2cm]
+  % Define start node
+  \node (start) [draw, circle] {Start};
+  
+  % Define enter credentials node
+  \node (enter_credentials) [below of=start, draw, rectangle, minimum width=4cm, minimum height=1cm] 
+    {Enter Username \& Password};
+    
+  % Draw arrow from start to enter credentials
+  \draw[->] (start) -- (enter_credentials);
+  
+  % Define validate credentials node
+  \node (validate_credentials) [below of=enter_credentials, draw, rectangle, minimum width=4cm, minimum height=1cm] 
+    {Validate Credentials};
+    
+  % Draw arrow from enter credentials to validate credentials
+  \draw[->] (enter_credentials) -- (validate_credentials);
+  
+  % Define decision diamond
+  \node (decision) [below of=validate_credentials, draw, diamond, aspect=2, minimum width=2cm, minimum height=1cm] 
+    {Valid?};
+    
+  % Draw arrow from validate credentials to decision
+  \draw[->] (validate_credentials) -- (decision);
+  
+  % Define show dashboard node
+  \node (show_dashboard) [below left=1.5cm and 2cm of decision, draw, rectangle, minimum width=4cm, minimum height=1cm] 
+    {Show Dashboard};
+    
+  % Define show error node
+  \node (show_error) [below right=1.5cm and 2cm of decision, draw, rectangle, minimum width=4cm, minimum height=1cm] 
+    {Show Error};
+    
+  % Draw arrow from decision to show dashboard
+  \draw[->] (decision.west) -- node[above]{Yes} (show_dashboard);
+  
+  % Draw arrow from decision to show error
+  \draw[->] (decision.east) -- node[above]{No} (show_error);
+  
+  % Define end node
+  \node (end) [below=2cm of show_error, draw, circle] {End};
+  
+  % Draw arrow from show dashboard to end
+  \draw[->] (show_dashboard) -- (end);
+  
+  % Draw arrow from show error to end
+  \draw[->] (show_error) -- (end);
+\end{tikzpicture}
+\end{document}
